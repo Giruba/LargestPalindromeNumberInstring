@@ -18,7 +18,7 @@ namespace LargestPalindromicNumberInArray
                 String[] elements = Console.ReadLine().Trim().Split(' ',',',';');
                 array = new long[numberOfElements];
                 for (int index = 0; index < numberOfElements; index++) {
-                    array[index] = int.Parse(elements[index]);
+                    array[index] = long.Parse(elements[index]);
                 }
 
             }
@@ -31,12 +31,17 @@ namespace LargestPalindromicNumberInArray
 
         public static long GetPalindromicNumberInArray(long[] array){
             long result = 0;
-            long maxLength = int.MinValue;
+            int maxLength = int.MinValue;
             for (int index = 0; index < array.Length; index++) {
+                long actualnumber = array[index];
+                if (actualnumber < 0) {
+                    array[index] = -array[index];
+                }
                 if (isPalindrome(array[index])) {
                     int length = GetLengthOfnumberAsAString(array[index]);
                     if (length > maxLength) {
-                        result = array[index];
+                        maxLength = length;
+                        result = actualnumber;
                     }
                 }
             }
